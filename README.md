@@ -1,5 +1,5 @@
 
-#About</br>
+<h3>#About</h3></br>
 Team project to build the clone of https://airbnb.com/
 Not necessarily including all functions but the core fundamentals.</br>
  The console is the command interpreter used to manage
