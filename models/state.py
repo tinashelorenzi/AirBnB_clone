@@ -1,12 +1,20 @@
 #!/usr/bin/python3
-"""Class State that inherits from the BaseModel"""
+
+"""
+This module defines the State class.
+"""
+
 from models.base_model import BaseModel
 
-class state(BaseModel):
-	"""
-	Represents a possible state for a location
-	
-	Attrib:
-		name (string): Name of the state
-	"""
-	name = ""
+
+class State(BaseModel):
+    """
+    Represents a possible state for a location.
+
+    Attributes:
+        name (str): Name of the state.
+    """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.name = ""
