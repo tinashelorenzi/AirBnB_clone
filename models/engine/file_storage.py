@@ -18,7 +18,9 @@ User = user.User
 State = state.State
 Review = review.Review
 
-name_class = ["BaseModel", "City", "State", "Place", "Amenity", "Review", "User"]
+name_class = ["BaseModel", "City", "State",
+              "Place", "Amenity", "Review", "User"]
+
 
 class FileStorage:
     """
@@ -28,21 +30,23 @@ class FileStorage:
     """
     __file_path = "file.json"
     __objects = {}
+
     def new(self, obj):
         """
         Sets the object with key into __objects{}
         """
         ind = "{}.{}".format(obj.__class__.__name__, obj.id)
         FileStorage.__objects[ind] = obj
+
     def reload(self):
         """
         Deserialze json to __objects
         """
         if exists(FileStorage.__file_path):
-            #Done if json file exists, recorded in file_path
+            # Done if json file exists, recorded in file_path
             with open(FileStorage.__file_path, "r", encoding='utf-8') as doc:
                 dict_from_json = load(doc)
             for key, value in dict_from_json.items():
                 if key.split('.')[0] in name_class:
-                    #Deserialize indeces
-                    FileStorage.__objects[key] = name_class[class_name](**value)
+                    # Deserialize indeces
+                    FileStorage.__objects[key] = eval(class_nam)(**value)
