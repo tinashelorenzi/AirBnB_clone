@@ -9,8 +9,8 @@ from models.base_model import BaseModel
 
 class City(BaseModel):
     """Implements the City class"""
-     
-     def __init__(self, *args, **Kwargs):
-         super().__init__(*args, **Kwargs)
-         state_id = ""
-         name = ""
+
+    def __init__(self, *args, **Kwargs):
+        super().__init__(*args, **Kwargs)
+        state_id = ""
+        name = ""
