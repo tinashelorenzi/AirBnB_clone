@@ -31,12 +31,26 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
+    def all(self):
+        """Returns the dictionary __objects."""
+        return FileStorage.__objects
+
     def new(self, obj):
         """
         Sets the object with key into __objects{}
         """
         ind = "{}.{}".format(obj.__class__.__name__, obj.id)
         FileStorage.__objects[ind] = obj
+
+    def save(self):
+        """
+        Serializes __object to JSON file to path '__file_path'
+        """
+        json_objects = {}
+        for key in self.__objects:
+            json_obj[key] = self.__objects[key].to_dict()
+        with open(self.__file_path, "w", encoding="utf-8") as f:
+            json.dump(json_obj, f)
 
     def reload(self):
         """
