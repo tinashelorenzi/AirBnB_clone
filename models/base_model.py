@@ -11,11 +11,9 @@ import models
 
 
 class BaseModel:
-
     """
     class that defines all common attributes and methods for other classes.
     """
-
     def __init__(self, **kwargs):
         """Initialize a new BaseModel instance with the given attributes."""
 
@@ -57,17 +55,17 @@ class BaseModel:
 
     def save(self):
         """
-        Updates the attribute 'update_at' to current date and time.
+        Updates the attribute 'updated_at' to current date and time.
         """
-        self.update_at = datetime.now()
+        self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
         """
-        Returns dictionary represantation of instance of base model.
+        Returns dictionary representation of instance of base model.
         """
         base_dict = self.__dict__.copy()
         base_dict["__class__"] = type(self).__name__
-        base_dict["create_at"] = base_dict["created_at"].isoformat()
-        base_dict["update_at"] = base_dict["updated_at"].isoformat()
+        base_dict["created_at"] = base_dict["created_at"].isoformat()
+        base_dict["updated_at"] = base_dict["updated_at"].isoformat()
         return base_dict
