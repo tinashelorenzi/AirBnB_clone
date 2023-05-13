@@ -49,7 +49,8 @@ class BaseModel:
         for attr in reserved_attrs:
             instance_attrs.pop(attr, None)
         # Format the string representation of the instance
-        instance_attrs_str = ", ".join(f"{k}={v!r}" for k, v in instance_attrs.items())
+        instance_attrs_str = ", ".join(f"{k}={v!r}"
+                                       for k, v in instance_attrs.items())
         instance_str = f"[{clname}] ({instance_id}) {{{instance_attrs_str}}}"
         return instance_str
 
