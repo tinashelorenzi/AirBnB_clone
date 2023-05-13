@@ -13,7 +13,7 @@ from models.user import User
 from models.amenity import Amenity
 import json
 
-classes = {"BaseModel": BaseModel, "User": User, "State": State, 
+classes = {"BaseModel": BaseModel, "User": User, "State": State,
            "Place": Place, "Amenity": Amenity, "Review": Review, "City": City}
 
 
@@ -82,8 +82,49 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
                 return
         print("** no instance found **")
+    def do_update(self, args):
+        """Updates an instance based on the class name and id"""
+        args = args.split()
+        if not args:
+            print("** class name missing **")
+            return
+        class_name = args[0]
+        if class_name not in classes:
+            print("** class doesn't exist **")
+            return
+        if len(args) < 2:
+            print("** instance id missing **")
+            return
+        instance_id = args[1]
+        key = class_name + '.' + instance_id
+        if key not in storage.all():
+            print("** no instance found **")
+            return
+        instance = storage.all()[key]
+        if len(args) < 3:
+            print("** attribute name missing **")
+            return
+        attr_name = args[2]
+        if len(args) < 4:
+            print("** value missing **")
+            return
+        attr_value = args[3]
+        setattr(instance, attr_name, attr_value)
+        instance.save()
 
-        
+    def do_all(self, args):
+        """Prints all str representation of all instances"""
+        if args:
+            class_name = args.split()[0]
+            if class_name not in classes:
+                print("** class doesn't exist **")
+                return
+            objects = storage.all(class_name).values()
+        else:
+            objects = storage.all().values()
+        n_list = [str(obj) for obj in objects]
+        print(n_list)
+   
 
 
 
