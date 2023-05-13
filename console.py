@@ -3,6 +3,7 @@
 """Modules for the command interpreter.
 """
 import cmd
+import json
 from models.base_model import BaseModel
 from models import storage
 from models.city import City
@@ -11,7 +12,6 @@ from models.place import Place
 from models.state import State
 from models.user import User
 from models.amenity import Amenity
-import json
 
 classes = {"BaseModel": BaseModel, "User": User, "State": State,
            "Place": Place, "Amenity": Amenity, "Review": Review, "City": City}
@@ -64,7 +64,8 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
         else:
             print(instance)
-    def do_destroy(self,args):
+
+    def do_destroy(self, args):
         """ Deletes an instance based on the class name and id """
         args = args.split()
         if not args:
@@ -82,6 +83,7 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
                 return
         print("** no instance found **")
+
     def do_update(self, args):
         """Updates an instance based on the class name and id"""
         args = args.split()
@@ -124,8 +126,6 @@ class HBNBCommand(cmd.Cmd):
             objects = storage.all().values()
         n_list = [str(obj) for obj in objects]
         print(n_list)
-   
-
 
 
 if __name__ == '__main__':
