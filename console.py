@@ -19,6 +19,8 @@ classes = {"BaseModel": BaseModel, "User": User, "State": State,
 
 class HBNBCommand(cmd.Cmd):
     """Defines the command interpreter."""
+    classes = {"BaseModel": BaseModel, "User": User, "State": State,
+           "Place": Place, "Amenity": Amenity, "Review": Review, "City": City}
 
     prompt = "(hbnb) "
 
